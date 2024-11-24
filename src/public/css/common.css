@@ -26,3 +26,10 @@ body {
     margin-left: 10px;
     text-decoration: none;
 }
+
+.logout-button{
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}

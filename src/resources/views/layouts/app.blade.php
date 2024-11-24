@@ -16,9 +16,16 @@
             <div class="logo">COACHTECH</div>
             <input type="text" placeholder="何をお探しですか？" class="search-bar">
             <nav class="nav">
-                <a href="#">ログイン</a>
+                @if(Auth::check() && Auth::user()->hasVerifiedEmail())
+                <form class="form" action="/logout" method="post">
+                    @csrf
+                    <button class="logout-button">ログアウト</button>
+                </form>
+                @else
+                <a href="/login">ログイン</a>
+                @endif
                 <a href="#">マイページ</a>
-                <a href="#">登録</a>
+                <a href="#">出品</a>
             </nav>
         </header>
         <div class="content">

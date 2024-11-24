@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\UserController;
+use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +21,14 @@ use App\Http\Controllers\ItemController;
 // });
 
 Route::get('/',[ItemController::class, 'index']);
+Route::get('/item/{item_id}', [ItemController::class,'getDetail']);
+Route::get('/register', [UserController::class,'getRegister']);
+Route::get('/login',[UserController::class,'getLogin']);
+
+// Route::get('/profile', function () {
+//     return view('profile'); // 実際のプロフィール画面のビューを指定
+// })->middleware(['auth', 'verified'])->name('profile');
+//Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login');
+Route::middleware('auth','verified')->group(function(){
+    Route::get('/profile',[UserController::class,'getProfile']);
+});

@@ -11,7 +11,9 @@
 <div class="product-grid">
     @foreach($items as $item)
         <div class="product-card">
-            <div class="product-image">{{$item->image}}</div>
+            <a href="/item/{{$item->id}}">
+                <img src="{{ preg_match('/^http/', $item->image) ? $item->image : asset($item->image) }}" alt="Item Image" class="product-image">
+            </a>
             <div class="product-name">{{$item->name}}</div>
         </div>
     @endforeach
