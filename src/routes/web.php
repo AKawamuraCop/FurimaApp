@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\FavoriteController;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
 /*
@@ -31,4 +32,6 @@ Route::get('/login',[UserController::class,'getLogin']);
 //Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login');
 Route::middleware('auth','verified')->group(function(){
     Route::get('/profile',[UserController::class,'getProfile']);
+    Route::post('/like/{item_id}', [FavoriteController::class, 'create'])->name('like');
+    Route::post('/unlike/{item_id}', [FavoriteController::class, 'delete'])->name('unlike');
 });

@@ -5,9 +5,14 @@
 @endsection
 @section('content')
  <div class="tabs">
-        <a href="#" class="tab active">おすすめ</a>
-        <a href="#" class="tab">マイリスト</a>
+        <a href="/" class="tab active">おすすめ</a>
+        <a href="/?page=mylist" class="tab">マイリスト</a>
 </div>
+@if (session('result'))
+<div class="flash_message">
+  {{ session('result') }}
+</div>
+@endif
 <div class="product-grid">
     @foreach($items as $item)
         <div class="product-card">

@@ -14,7 +14,19 @@
             <h1 class="product-title">{{$item->name}}</h1>
             <p class="product-brand">{{$item->brand}}</p>
             <p class="product-price">{{$item->price}}(税込)</p>
-            
+            @if(Auth::check())
+                @if(count($item->favorites) == 0)
+                    <form class="ml-a" method="POST" action="{{ route ('like',['item_id' => $item->id]) }}">
+                        @csrf
+                        <input class="shop-card__content__icon inactive" type="image" src="/img/unlike.png" alt="いいねをする" width="32px" height="32px">
+                    </form>
+                @else
+                    <form class="ml-a" method="POST" action="{{ route ('unlike',['item_id' => $item->id]) }}">
+                        @csrf
+                        <input class="shop-card__content__icon inactive" type="image" src="/img/like.png" alt="いいねを外す" width="32px" height="32px">
+                    </form>
+                @endif
+            @endif
             <button class="purchase-button">購入手続きをへ</button>
             
             <h2>商品説明</h2>
