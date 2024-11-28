@@ -11,6 +11,10 @@
     color: #000;
 }
 
+.tab.not-active {
+    color: #000;
+}
+
 .tab.active {
     color: red;
     font-weight: bold;

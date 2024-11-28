@@ -7,7 +7,7 @@
     
     <div class="product-details">
         <div class="product-image">
-           <img src="{{ preg_match('/^http/', $item->image) ? $item->image : asset($restaurant->image) }}" alt="Item Image" class="product-image">
+           <img src="{{ preg_match('/^http/', $item->image) ? $item->image : asset($item->image) }}" alt="Item Image" class="product-image">
         </div>
         
         <div class="product-info">
@@ -42,18 +42,28 @@
             </p>
             <p>商品の状態：</p>
             
-            <h2>コメント (1)</h2>
-            <div class="comment">
-                <div class="comment-avatar">●</div>
-                <div class="comment-content">
-                    <span class="comment-author">admin</span>
-                    <input type="text" placeholder="コメントを入力してください">
+            @if($comments->isEmpty())
+                <h2>コメント</h2>
+                <p>まだコメントはありません</p>
+            @else
+                <h2>コメント {{ $comments->count() }}</h2>
+                <div class="comment">
+                    <div class="comment-content">
+                        @foreach($comments as $comment)
+                            <span class="comment-author">{{ $comment->user->name }}</span>
+                            <span class="comment-date">{{ $comment->created_at }}</span>
+                            <span class="comment">{{ $comment->comment }}</span>
+                        @endforeach
+                    </div>
                 </div>
-            </div>
-            
+            @endif
             <h2>商品のコメント</h2>
-            <textarea placeholder="コメントを投稿する"></textarea>
-            <button class="comment-submit-button">コメントを投稿する</button>
+            <form class="comment-form" action="/comment" method="post">
+                @csrf
+                <input type="hidden" name="item_id" value="{{ $item->id }}">
+                <textarea type="text" name="comment" placeholder="コメントを投稿する"></textarea>
+                <button class="comment-submit-button">コメントを投稿する</button>
+            </form>
         </div>
     </div>
 @endsection

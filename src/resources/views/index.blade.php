@@ -4,9 +4,9 @@
 <link rel="stylesheet" href="{{ asset('/css/index.css')  }}" >
 @endsection
 @section('content')
- <div class="tabs">
-        <a href="/" class="tab active">おすすめ</a>
-        <a href="/?page=mylist" class="tab">マイリスト</a>
+<div class="tabs">
+    <a href="/" class="tab {{ $page !== 'mylist' ? 'active' : 'not-active' }}">おすすめ</a>
+    <a href="/?page=mylist" class="tab {{ $page === 'mylist' ? 'active' : 'not-active' }}">マイリスト</a>
 </div>
 @if (session('result'))
 <div class="flash_message">

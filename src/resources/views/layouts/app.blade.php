@@ -14,7 +14,9 @@
     <div class="app">
         <header class="header">
             <div class="logo">COACHTECH</div>
-            <input type="text" placeholder="何をお探しですか？" class="search-bar">
+            <form class="search-form" action="/search" method="get">
+                <input type="text" name="search"placeholder="何をお探しですか？" class="search-bar">
+            </form>
             <nav class="nav">
                 @if(Auth::check() && Auth::user()->hasVerifiedEmail())
                 <form class="form" action="/logout" method="post">
