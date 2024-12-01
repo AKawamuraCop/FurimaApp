@@ -15,22 +15,20 @@ class ItemController extends Controller
 
     public function index(Request $request)
     {
-        $page = $request->query('page'); // クエリパラメータを取得
+        $tab = $request->query('tab'); // クエリパラメータを取得
 
-        if ($page === 'mylist') {
+        if ($tab === 'mylist') {
             // ログインしていない場合はリダイレクト
             if (!Auth::check()) {
                 return redirect('/')->with('result','ログインしてください');
             }
 
-            // マイリスト用のデータ取得（例: ログインユーザーのお気に入り）
             $items = Auth::user()->favorites()->get();
         } else {
-            // おすすめ用のデータ取得（例: 全商品の一覧やランダムなアイテム）
-            $items = Item::all(); // 適宜クエリを変更してください
+            $items = Item::all(); 
         }
 
-        return view('index', compact('items', 'page'));
+        return view('index', compact('items', 'tab'));
     }
 
 
@@ -79,17 +77,7 @@ class ItemController extends Controller
             $searchTerm = $request->search;
 
             $query->where(function ($q) use ($searchTerm) {
-                $q->where('name', 'like', '%' . $searchTerm . '%') // 名前での検索
-                ->orWhereHas('categories', function ($subQuery) use ($searchTerm) {
-                    $subQuery->where(function ($enumQuery) use ($searchTerm) {
-                      // enum のラベルで検索
-                        foreach (CategoryEnum::cases() as $enum) {
-                            if (str_contains($enum->label(), $searchTerm)) {
-                                $enumQuery->orWhere('number', $enum->value);
-                            }
-                        }
-                    });
-                });
+                $q->where('name', 'like', '%' . $searchTerm . '%');// 名前での検索
             });
         }
 

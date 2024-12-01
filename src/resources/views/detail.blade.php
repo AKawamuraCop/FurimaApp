@@ -9,7 +9,6 @@
         <div class="product-image">
            <img src="{{ preg_match('/^http/', $item->image) ? $item->image : asset($item->image) }}" alt="Item Image" class="product-image">
         </div>
-        
         <div class="product-info">
             <h1 class="product-title">{{$item->name}}</h1>
             <p class="product-brand">{{$item->brand}}</p>
@@ -27,7 +26,9 @@
                     </form>
                 @endif
             @endif
-            <button class="purchase-button">購入手続きをへ</button>
+            <form class="purchase-form" action="/purchase/{{ $item->id }}" method="get">
+                <button class="purchase-button">購入手続きをへ</button>
+            </form>
             
             <h2>商品説明</h2>
             <p class="product-description">

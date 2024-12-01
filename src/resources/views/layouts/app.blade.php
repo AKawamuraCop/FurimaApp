@@ -13,21 +13,19 @@
 <body>
     <div class="app">
         <header class="header">
-            <div class="logo">COACHTECH</div>
-            <form class="search-form" action="/search" method="get">
-                <input type="text" name="search"placeholder="何をお探しですか？" class="search-bar">
-            </form>
+            <div class="logo"><a href="/">COACHTECH</a></div>
             <nav class="nav">
                 @if(Auth::check() && Auth::user()->hasVerifiedEmail())
+                <form class="search-form" action="/search" method="get">
+                    <input type="text" name="search"placeholder="何をお探しですか？" class="search-bar">
+                </form>
                 <form class="form" action="/logout" method="post">
                     @csrf
                     <button class="logout-button">ログアウト</button>
+                    <a href="/mypage?tab=sell">マイページ</a>
+                    <a href="#">出品</a>
                 </form>
-                @else
-                <a href="/login">ログイン</a>
                 @endif
-                <a href="#">マイページ</a>
-                <a href="#">出品</a>
             </nav>
         </header>
         <div class="content">

@@ -5,8 +5,8 @@
 @endsection
 @section('content')
 <div class="tabs">
-    <a href="/" class="tab {{ $page !== 'mylist' ? 'active' : 'not-active' }}">おすすめ</a>
-    <a href="/?page=mylist" class="tab {{ $page === 'mylist' ? 'active' : 'not-active' }}">マイリスト</a>
+    <a href="/" class="tab {{ $tab !== 'mylist' ? 'active' : 'not-active' }}">おすすめ</a>
+    <a href="/?tab=mylist" class="tab {{ $tab === 'mylist' ? 'active' : 'not-active' }}">マイリスト</a>
 </div>
 @if (session('result'))
 <div class="flash_message">

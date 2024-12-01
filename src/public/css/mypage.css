@@ -1,0 +1,82 @@
+/* Profile Section */
+.profile__image {
+    width: 100px;
+    height: 100px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin: 20px auto;
+}
+
+.profile__name {
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 10px 0;
+}
+
+.profile__edit-button {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    border: 1px solid red;
+    color: red;
+    background: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #ccc;
+}
+
+.tab {
+    margin-right: 20px;
+    text-decoration: none;
+    color: #000;
+    font-size: 16px;
+}
+
+.tab.not-active {
+    color: #000;
+}
+
+.tab.active {
+    color: red;
+    font-weight: bold;
+    border-bottom: 2px solid red;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    padding: 20px 40px;
+}
+
+.product-card {
+    text-align: center;
+}
+
+.product-image {
+    width: 100%;
+    height: 150px;
+    background-color: #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 14px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.product-name {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #333;
+    font-weight: bold;
+}

@@ -13,9 +13,9 @@
     <form class="form" action="/login" method="post">
       @csrf
       <div class="form-group">
-        <label for="username">ユーザー名/メールアドレス</label>
-    <input  name="email" name="mail" type="email" >
-    @error('mail')
+        <label for="email">ユーザー名/メールアドレス</label>
+    <input  name="email" name="email" type="email" >
+    @error('email')
           <p class="error">{{ $message }}</p>
         @enderror
       </div>
