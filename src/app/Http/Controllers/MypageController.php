@@ -22,8 +22,11 @@ class MypageController extends Controller
 
         }
         else{
-            $items = Sale::with('item')
-                    ->where('user_id', Auth::id())->get();
+            $loggedInUserId = Auth::id();
+
+            $items = Item::whereHas('sales', function ($query) use ($loggedInUserId) {
+                    $query->where('user_id', $targetUserId);
+                    })->get();
         }
         return view('/mypage', compact('profile','items','tab'));
     }

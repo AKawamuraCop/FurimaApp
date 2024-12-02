@@ -18,7 +18,7 @@
                 </select>
                 <h2>配送先</h2>
                 <p>〒 {{ $item->zip_code }}<br>{{ $item->address }}</p>
-                <a href="#" class="change-link">変更する</a>
+                <a href="{{ route('purchase.address', ['item_id' => $item->id]) }}" class="change-link">変更する</a>
             </div>
             <aside class="order-summary">
                 <div class="summary-item">

@@ -35,4 +35,9 @@ class Item extends Model
         return $this->hasMany(Category::class);
     }
 
+    public function sale()
+    {
+        return $this->hasOne(Sale::class, 'item_id');
+    }
+
 }

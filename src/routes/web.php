@@ -43,4 +43,6 @@ Route::middleware('auth','verified')->group(function(){
     Route::post('/unlike/{item_id}', [FavoriteController::class, 'delete'])->name('unlike');
     Route::post('/comment',[CommentController::class,'create']);
     Route::get('/mypage',[MypageController::class,'getMypage']);
+    Route::get('purchase/address/{item_id}',[PurchaseController::class, 'getAddress'])->name('purchase.address');
+    Route::post('update/address',[PurchaseController::class, 'postAddress'])->name('update.address');
 });
