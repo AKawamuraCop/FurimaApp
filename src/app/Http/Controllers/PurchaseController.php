@@ -48,6 +48,6 @@ class PurchaseController extends Controller
             ]);
         }
 
-        return redirect()->route('purchase.address',['item_id'=> $item_id]);
+        return redirect()->route('purchase.address',['item_id'=> $item_id])->with('result','更新しました');
     }
 }

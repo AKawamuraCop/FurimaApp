@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Favorite;
+use App\Enums\ConditionEnum;
 
 class Item extends Model
 {
@@ -18,6 +19,10 @@ class Item extends Model
         'condition',
         'description',
         'image'
+    ];
+
+    protected $casts =[
+        'condition' => ConditionEnum::class,
     ];
 
     public function favorites()

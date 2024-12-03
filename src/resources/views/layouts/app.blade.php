@@ -23,7 +23,7 @@
                     @csrf
                     <button class="logout-button">ログアウト</button>
                     <a href="/mypage?tab=sell">マイページ</a>
-                    <a href="#">出品</a>
+                    <a href="/sell">出品</a>
                 </form>
                 @endif
             </nav>

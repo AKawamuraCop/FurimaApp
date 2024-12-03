@@ -4,6 +4,11 @@
 <link rel="stylesheet" href="{{ asset('/css/address.css')  }}" >
 @endsection
 @section('content')
+@if (session('result'))
+<div class="flash_message">
+  {{ session('result') }}
+</div>
+@endif
 <h2 class="profile__title">住所変更</h2>
 <form class="profile-form" action="{{ route('update.address') }}" method="post">
     @csrf

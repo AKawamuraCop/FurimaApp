@@ -31,7 +31,6 @@ class ProfileController extends Controller
         {
             $imagePath = $request->file('image')->store('public/images');
 
-            
             $imagePath = str_replace('public/', 'storage/', $imagePath);
         }
         else
