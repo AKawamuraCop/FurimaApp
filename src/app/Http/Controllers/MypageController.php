@@ -24,7 +24,7 @@ class MypageController extends Controller
         else{
             $loggedInUserId = Auth::id();
 
-            $items = Item::whereHas('sales', function ($query) use ($loggedInUserId) {
+            $items = Item::whereHas('sale', function ($query) use ($loggedInUserId) {
                     $query->where('user_id', $targetUserId);
                     })->get();
         }

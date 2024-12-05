@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Enums\CategoryEnum;
 use App\Enums\ConditionEnum;
 use App\Models\Item;
+use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 
 class SellController extends Controller
 {
@@ -44,7 +46,20 @@ public function postSell(Request $request)
         'image'=> $imagePath,
     ]);
 
-    //categoriesの登録
+    // Categoriesを登録
+    $categories = $request->categories; // 配列形式で受け取れる
+    if (!is_array($categories)) {
+    $categories = explode(',', $categories);
+    }
+    
+    if (!empty($categories)) {
+        foreach ($categories as $category) {
+            Category::create([
+                'item_id' => $item->id,
+                'number' => $category,
+            ]);
+        }
+    }
 
     return redirect()->back()->with('result','登録しました');
 

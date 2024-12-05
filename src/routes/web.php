@@ -29,7 +29,7 @@ use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 Route::get('/',[ItemController::class, 'index']);
 Route::get('/item/{item_id}', [ItemController::class,'getDetail']);
 Route::get('/register', [UserController::class,'getRegister']);
-Route::get('/login',[UserController::class,'getLogin']);
+Route::get('/login',[UserController::class,'getLogin'])->name('login');;
 Route::get('/search',[ItemController::class,'search']);
 
 // Route::get('/profile', function () {
@@ -47,4 +47,5 @@ Route::middleware('auth','verified')->group(function(){
     Route::get('purchase/address/{item_id}',[PurchaseController::class, 'getAddress'])->name('purchase.address');
     Route::post('update/address',[PurchaseController::class, 'postAddress'])->name('update.address');
     Route::get('/sell',[SellController::class,'getSell']);
+    Route::post('/sell',[SellController::class,'postSell']);
 });

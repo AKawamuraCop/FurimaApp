@@ -19,12 +19,12 @@
                 <form class="search-form" action="/search" method="get">
                     <input type="text" name="search"placeholder="何をお探しですか？" class="search-bar">
                 </form>
-                <form class="form" action="/logout" method="post">
+                <form class="logout-form" action="/logout" method="post">
                     @csrf
                     <button class="logout-button">ログアウト</button>
+                </form>
                     <a href="/mypage?tab=sell">マイページ</a>
                     <a href="/sell">出品</a>
-                </form>
                 @endif
             </nav>
         </header>

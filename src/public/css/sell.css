@@ -1,3 +1,119 @@
+/* General form adjustments */
+form.form {
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Title */
+.title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Form sections */
+.form-section {
+    margin-bottom: 30px;
+}
+
+.form-section-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+}
+
+/* Image upload styling */
+.image-upload {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.image-upload-label {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff6b6b;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.image-upload-label:hover {
+    background-color: #e64e4e;
+    transform: scale(1.05);
+}
+
+.image-input {
+    display: none;
+}
+
+/* Inputs and labels */
+.label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.input,
+.select,
+.textarea,
+.price-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Submit button */
+.submit-button {
+    width: 100%;
+    padding: 15px;
+    background-color: #ff6b6b;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #e64e4e;
+    transform: scale(1.05);
+}
+
+/* Dropdown adjustments */
+.select {
+    background-color: #fff;
+    appearance: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* Placeholder color adjustment for input */
+::placeholder {
+    color: #aaa;
+}
+
+/* Adjusting category buttons */
+.categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
 .category {
     display: inline-block;
     padding: 10px 20px;
@@ -14,4 +130,10 @@
     background-color: #ff6b6b;
     color: #fff;
     border-color: #ff6b6b;
+}
+
+/* Price input adjustments */
+.price-input {
+    display: inline-block;
+    width: calc(100% - 30px);
 }
