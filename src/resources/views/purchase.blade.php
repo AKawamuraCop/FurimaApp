@@ -16,7 +16,7 @@
                 <option>選択してください</option>
             </select>
             <h2>配送先</h2>
-            @if(!empty($item->senderAddress))
+            @if(!empty($item->senderAddress) && $item->senderAddress->user_id === Auth::id())
                 <p>〒 {{ $item->senderAddress->zip_code }}<br>{{ $item->senderAddress->address }}</p>
             @else
                 <p>〒 {{ $profile->zip_code }}<br>{{ $profile->address }}</p>

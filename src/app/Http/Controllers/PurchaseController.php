@@ -13,8 +13,9 @@ class PurchaseController extends Controller
 {
     public function getPurchase($item_id)
     {
-        $item = Item::with('senderAddress')->where('id', $item_id)->first();
+        $item = Item::where('id', $item_id)->first();
         $profile = Profile::where('user_id', Auth::id())->first();
+
         return view('purchase',compact('item','profile'));
     }
 
