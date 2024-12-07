@@ -8,6 +8,7 @@ use App\Models\Item;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\Sale;
 use App\Enums\CategoryEnum;
 
 class ItemController extends Controller
@@ -19,13 +20,19 @@ class ItemController extends Controller
 
         if ($tab === 'mylist') {
             // ログインしていない場合はリダイレクト
-            if (!Auth::check()) {
-                return redirect('/')->with('result','ログインしてください');
+            if (Auth::check()) {
+                $items = Auth::user()->favorites()->with('sale')->get();
+            }
+            else{
+                $item ="";
             }
 
-            $items = Auth::user()->favorites()->get();
-        } else {
-            $items = Item::all(); 
+        }
+        else
+        {
+            $items = Item::with('sale')
+                ->where('user_id', '!=', Auth::id())
+                ->get();
         }
 
         return view('index', compact('items', 'tab'));
@@ -34,14 +41,10 @@ class ItemController extends Controller
 
     public function getDetail($item_id)
     {
-        // $item = Item::find($item_id);
-        // $categories = Category::where('item_id', $item_id)
-        // ->get();
 
         $loginUser = auth()->id();
-        $item = Item::with(['favorites' => function ($query) {
-            $query->where('user_id', auth()->id());
-        }])->find($item_id);
+        $item = Item::with('favorites','sale')
+                ->findOrFail($item_id);
 
 
         $categories = Category::where('item_id', $item_id)
@@ -59,31 +62,33 @@ class ItemController extends Controller
 
     public function search(Request $request)
     {
-        // $pageの値を取得
-        $page = $request->get('page', null);
+       // $pageの値を取得
+        $tab = $request->get('tab', null);
+
+        //検索を取得
+        $searchTerm = $request->search;
 
         // ベースのクエリを設定
-        $query = Item::with('categories');
+        $query = Item::query();
 
-        // $page === 'mylist' の場合はfavoritesに登録されたitemだけを絞り込む
-        if ($page === 'mylist') {
-            $query->whereHas('favorites', function ($q) {
-                $q->where('user_id', auth()->id()); // ログインユーザーで絞り込み
+        // $tab === 'mylist' の場合はfavoritesに登録されたitemだけを絞り込む
+        if ($tab === 'mylist') {
+            $query->whereHas('favorites', function ($q) use($searchTerm){
+                $q->where('user_id', auth()->id())// ログインユーザーで絞り込み
+                  ->where('name', 'like', '%' . $searchTerm . '%'); // 名前での検索
             });
         }
 
         // 商品名での検索
         if (!empty($request->search)) {
-            $searchTerm = $request->search;
-
             $query->where(function ($q) use ($searchTerm) {
                 $q->where('name', 'like', '%' . $searchTerm . '%');// 名前での検索
             });
         }
 
-    $items = $query->get();
+        $items = $query->get();
 
-    return view('index', compact('items','page'));
-}
+        return view('index', compact('items','tab'));
+    }
 
 }

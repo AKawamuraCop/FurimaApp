@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Favorite;
+use App\Models\SenderAddress;
 use App\Enums\ConditionEnum;
 
 class Item extends Model
@@ -43,6 +44,11 @@ class Item extends Model
     public function sale()
     {
         return $this->hasOne(Sale::class, 'item_id');
+    }
+
+    public function senderAddress()
+    {
+        return $this->hasOne(SenderAddress::class);
     }
 
 }

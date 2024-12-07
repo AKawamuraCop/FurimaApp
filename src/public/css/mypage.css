@@ -1,10 +1,16 @@
-/* Profile Section */
 .profile__image {
     width: 100px;
     height: 100px;
     background-color: #ccc;
     border-radius: 50%;
     margin: 20px auto;
+}
+
+.profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
 }
 
 .profile__name {
@@ -17,6 +23,7 @@
     display: block;
     margin: 0 auto;
     padding: 10px 20px;
+    width: 150px;
     border: 1px solid red;
     color: red;
     background: none;

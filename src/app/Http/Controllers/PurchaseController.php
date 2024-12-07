@@ -13,7 +13,7 @@ class PurchaseController extends Controller
 {
     public function getPurchase($item_id)
     {
-        $item = Item::find($item_id)->first();
+        $item = Item::with('senderAddress')->where('id', $item_id)->first();
         $profile = Profile::where('user_id', Auth::id())->first();
         return view('purchase',compact('item','profile'));
     }
@@ -21,6 +21,10 @@ class PurchaseController extends Controller
     public function getAddress($item_id){
         $item_id = $item_id;
         $address = SenderAddress::where('item_id', $item_id)->first();
+        if(empty($address))
+        {
+            $address = Profile::where('user_id', Auth::id())->first();
+        }
 
         return view('address',compact('item_id','address'));
     }

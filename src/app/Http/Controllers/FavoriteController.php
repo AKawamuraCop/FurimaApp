@@ -10,9 +10,9 @@ class FavoriteController extends Controller
 {
     public function create($item_id)
     {
-         Favorite::create([
-                'user_id' => Auth::id(),
-                'item_id'=> $item_id,]);
+        Favorite::create([
+            'user_id' => Auth::id(),
+            'item_id'=> $item_id,]);
 
         return redirect()->back();
     }

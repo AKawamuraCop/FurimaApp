@@ -13,16 +13,19 @@
 <body>
     <div class="app">
         <header class="header">
-            <div class="logo"><a href="/">COACHTECH</a></div>
+            <div class="logo">
+                <a href="/">COACHTECH</a>
+            </div>
             <nav class="nav">
                 @if(Auth::check() && Auth::user()->hasVerifiedEmail())
-                <form class="search-form" action="/search" method="get">
-                    <input type="text" name="search"placeholder="何をお探しですか？" class="search-bar">
-                </form>
-                <form class="logout-form" action="/logout" method="post">
-                    @csrf
-                    <button class="logout-button">ログアウト</button>
-                </form>
+                    <form class="search-form" action="/search" method="get">
+                        <input type="hidden" name="tab" value="{{ request()->query('tab') }}">
+                        <input type="text" name="search" value="{{ request()->query('search') }}" placeholder="何をお探しですか？" class="search-bar">
+                    </form>
+                    <form class="logout-form" action="/logout" method="post">
+                        @csrf
+                        <button class="logout-button">ログアウト</button>
+                    </form>
                     <a href="/mypage?tab=sell">マイページ</a>
                     <a href="/sell">出品</a>
                 @endif
